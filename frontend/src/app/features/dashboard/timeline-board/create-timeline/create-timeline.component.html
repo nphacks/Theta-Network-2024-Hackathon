@@ -1,44 +1,35 @@
-<p>create-timeline works!</p>
-<form [formGroup]="timelineForm" (ngSubmit)="submitTimeline()">
-    <div>
-        <label>Timeline Name:</label>
-        <input type="text" formControlName="timelineName">
-    </div>
-    <div>
-        <label>Purpose:</label>
-        <select formControlName="purpose">
-            <option value="Research">Research</option>
-            <option value="Story Building">Story Building</option>
-            <option value="Education Course">Education Course</option>
-            <option value="Notes">Notes</option>
-        </select>
-    </div>
-    <!-- <div>
-        <label>Visbility:</label>
-        <input type="radio" formControlName="visbility">
-            <option value="public">Public</option>
-            <option value="private">Private</option>
-        </input>
-    </div> -->
-    <div>
-        <label>Intent:</label>
-        <select formControlName="intent">
-
-        </select>
-    </div>
-    <div formGroupName="episode">
+<div>
+    <h3>Create Timeline</h3>
+    <form [formGroup]="timelineForm" (ngSubmit)="submitTimeline()">
         <div>
-            <label>Episode Settings:</label>
-                <select formControlName="episode['types']">
+            <label>Timeline Name:</label>
+            <input type="text" formControlName="timelineName">
+        </div>
+        <div>
+            <label>Purpose:</label>
+            <select formControlName="purpose" (change)="purposeSelected()">
+                <option value="Research">Research</option>
+                <option value="Story Building">Story Building</option>
+                <option value="Education Course">Education Course</option>
+                <option value="Notes">Notes</option>
             </select>
         </div>
-    </div>
-    <div>
-        <label>Event Settings:</label>
-        <select formControlName="formatAllowed">
-            <option value="text only">Text only</option>
-            <option value="images-text">Image and Text</option>
-        </select>
-    </div>
-    <input type="submit" text="Submit">
-</form>
+        <div>
+            <label>Visbility:</label>
+            <label><input type="radio" formControlName="visibility" value="public">Public</label>
+            <label><input type="radio" formControlName="visibility" value="private">Private</label>
+        </div>
+        <div>
+            <label>Intent:</label>
+            <select formControlName="intent">
+                <option *ngFor="let intent of intentOptions" value="{{intent}}">{{intent}}</option>
+            </select>
+        </div>
+        <div>
+            <label>Edit Access:</label>
+            <label><input type="radio" formControlName="editAccess" value="public">Public</label>
+            <label><input type="radio" formControlName="editAccess" value="private">Private</label>
+        </div>
+        <input type="submit" text="Submit">
+    </form>
+</div>

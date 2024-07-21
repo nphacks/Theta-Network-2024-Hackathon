@@ -1,1 +1,35 @@
-<p>episode works!</p>
+<h3>Create Episode Form</h3>
+<div>
+    <form [formGroup]="createEpisodeEventForm" (ngSubmit)="submitEpisodeEvent()">
+        <p>Episode</p>
+        <div formGroupName="episode">
+            <label>Episode Title:</label>
+            <input type="text" formControlsName="title">
+            <label>Episode Description:</label>
+            <input type="text" formControlsName="description">
+            <label>Episode Type:</label>
+            <input type="text" formControlsName="type">
+            <label>Episode Ownership:</label>
+            <input type="text" formControlsName="ownership">
+        </div>
+        <p>Event</p>
+        <div formGroupName="event">
+            <label>Date</label>
+            <input type="date" formControlName="date">
+            <!-- <div formArrayName="eventList">
+            @for(controls of createEpisodeEventForm.get('eventList').controls; track controls; let i = $index) {
+            <div [formGroupName]="i"> -->
+                <input type="text" formControlName="title">
+                <input type="text" formControlName="descriptionPrompt" value="Prompt for image...">
+                <button>Generate Image</button>
+                <input type="text" formControlName="description">
+                <input type="text" formControlName="imagePrompt" value="Prompt for image...">
+                <button>Generate Image</button>
+                <input type="text" formControlName="author">
+            <!-- </div>
+            }
+            </div> -->
+        </div>
+        <input type="Submit" value="Submit Episode">
+    </form>
+</div>

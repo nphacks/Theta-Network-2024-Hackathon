@@ -10,6 +10,8 @@ import { TimelineSettingsComponent } from './timeline-board/timeline-settings/ti
 import { EpisodeComponent } from './timeline-board/timeline/episode/episode.component';
 import { EpisodeSettingsComponent } from './timeline-board/timeline/episode-settings/episode-settings.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { LoginComponent } from '../../shared/login/login.component';
+import { SharedModule } from '../../shared/shared.module';
 
 
 @NgModule({
@@ -24,7 +26,8 @@ import { ReactiveFormsModule } from '@angular/forms';
   imports: [
     CommonModule,
     DashboardRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    SharedModule
   ],
   providers: [TimelineService]
 })

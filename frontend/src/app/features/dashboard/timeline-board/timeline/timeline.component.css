@@ -1,0 +1,19 @@
+.timeline {
+    display: flex;
+    flex-direction: row;
+    overflow-x: auto;
+    background-color: aquamarine;
+}
+
+.episode {
+    height: 400px;
+    width: 600px;
+    margin-right: 50px;
+    box-sizing: border-box;
+    background-color: antiquewhite;
+}
+
+.event {
+    margin: 10px 0;
+    background-color:cadetblue;
+}
