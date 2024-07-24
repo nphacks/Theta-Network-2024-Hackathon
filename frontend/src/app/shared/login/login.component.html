@@ -1,9 +1,0 @@
-<h3>Login</h3>
-<form #loginForm="ngForm">
-    <input type="email" name="email" ngModel #email="ngModel" placeholder="Enter Email">
-    <input type="password" name="password" ngModel #password="ngModel"  placeholder="Enter Password">
-    <div *ngIf="!account">
-        <button (click)="connectMetaMask()">Connect MetaMask</button>
-    </div>
-    <input [disabled]="loginButtonDisable" type="submit" value="Login" (click)="submitLoginForm(loginForm.value)">
-</form>

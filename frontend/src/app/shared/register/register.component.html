@@ -1,8 +1,0 @@
-<h3>Register</h3>
-<form #registerForm="ngForm" (ngSubmit)="submitRegisterForm(registerForm.value)">
-    <input type="text" name="name" ngModel #name="ngModel" placeholder="Enter Full Name">
-    <input type="email" name="email" ngModel #email="ngModel" placeholder="Enter Email">
-    <input type="password" name="password" ngModel #password="ngModel"  placeholder="Enter Password">
-    <input type="password" name="password" ngModel #reenterPassword="ngModel"  placeholder="Re-enter Password">
-    <input type="submit" value="Register">
-</form>
