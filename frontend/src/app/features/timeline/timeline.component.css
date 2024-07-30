@@ -90,6 +90,7 @@
 .episode-description {
     padding: 15px 0;
     font-size: 17px;
+    word-wrap: break-word;
 }
 
 .event-container {
@@ -107,8 +108,8 @@
 }
 
 .event-content {
-    display: grid;
-    grid-template-columns: 60% auto;
+    display: flex;
+    flex-direction: column;
 }
 
 .event-description {

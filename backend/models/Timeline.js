@@ -76,7 +76,7 @@ const TimelineSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  visbility: {
+  visibility: {
     type: String, //public, private, group
     required: true
   },

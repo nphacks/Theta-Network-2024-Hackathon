@@ -4,10 +4,12 @@ const auth = require('../middleware/auth');
 const router = express.Router();
 const multer = require('multer');
 const storage = multer.memoryStorage();
+const fs = require('fs');
+const path = require('path');
 const upload = multer({ storage: storage });
 const bucket = require('../firebaseConfig');
 
-const INFERENCE_ENDPOINT = 'https://thetahackaimdodphpbc-282e03badbd1600c.tec-s1.onthetaedgecloud.com';
+const INFERENCE_ENDPOINT = 'https://thetahacka7mteb35p4b-f3981a801b74825d.tec-s1.onthetaedgecloud.com/';
 
 // Generate random names
 function generateRandomName(length) {
@@ -21,48 +23,75 @@ function generateRandomName(length) {
 }
 
 // Store image/video in Firebase Storage
-const storeImageVideo = async (buffer, mimeType) => {
-  const randomName = generateRandomName(15);
-  const blob = bucket.file(randomName);
-  const blobStream = blob.createWriteStream({
-    metadata: {
-      contentType: mimeType
-    }
-  });
+// const storeImageVideo = async (buffer, mimeType) => {
+//   const randomName = generateRandomName(15);
+//   const blob = bucket.file(randomName);
+//   const blobStream = blob.createWriteStream({
+//     metadata: {
+//       contentType: mimeType
+//     }
+//   });
 
-  return new Promise((resolve, reject) => {
-    blobStream.on('error', (err) => {
-      reject(err);
-    });
+//   return new Promise((resolve, reject) => {
+//     blobStream.on('error', (err) => {
+//       reject(err);
+//     });
 
-    blobStream.on('finish', () => {
-      const publicUrl = `https://storage.googleapis.com/${bucket.name}/${blob.name}`;
-      resolve({ imageUrl: publicUrl, imageName: blob.name });
-    });
+//     blobStream.on('finish', () => {
+//       const publicUrl = `https://storage.googleapis.com/${bucket.name}/${blob.name}`;
+//       resolve({ imageUrl: publicUrl, imageName: blob.name });
+//     });
 
-    blobStream.end(buffer);
-  });
-};
+//     blobStream.end(buffer);
+//   });
+// };
 
 // Generate image
+// router.post('/generate-image', async (req, res) => {
+//   console.log('Hitting generate-image', req.body);
+//   try {
+//     const response = await axios.post(`${INFERENCE_ENDPOINT}/generate-image`, {
+//       input: req.body.input
+//     }, {
+//       responseType: 'arraybuffer'
+//     });
+
+//     const imageBuffer = Buffer.from(response.data, 'binary');
+//     const mimeType = 'image/png';
+
+//     // Store the image in Firebase Storage
+//     const result = await storeImageVideo(imageBuffer, mimeType);
+
+//     res.status(200).send(result);
+//   } catch (error) {
+//     res.status(500).json({ error: error.message });
+//   }
+// });
+
 router.post('/generate-image', async (req, res) => {
-  console.log('Hitting generate-image', req.body);
+  console.log('Hitting  generate-image', req.body)
   try {
-    const response = await axios.post(`${INFERENCE_ENDPOINT}/generate-image`, {
-      input: req.body.input
+      const response = await axios.post(`${INFERENCE_ENDPOINT}/generate-image`, {
+        input: req.body.input
     }, {
-      responseType: 'arraybuffer'
+        responseType: 'arraybuffer'
     });
+    // res.set('Content-Type', 'image/png');
+    // res.send(Buffer.from(response.data, 'binary'));
+    let filename = generateRandomName(10)+'.png'
+    const imagePath = path.join(__dirname, 'assets', filename);
+    
+    // Ensure assets directory exists
+    if (!fs.existsSync(path.join(__dirname, 'assets'))) {
+      fs.mkdirSync(path.join(__dirname, 'assets'));
+    }
 
-    const imageBuffer = Buffer.from(response.data, 'binary');
-    const mimeType = 'image/png';
+    fs.writeFileSync(imagePath, response.data);
 
-    // Store the image in Firebase Storage
-    const result = await storeImageVideo(imageBuffer, mimeType);
-
-    res.status(200).send(result);
+    res.sendFile(imagePath);
   } catch (error) {
-    res.status(500).json({ error: error.message });
+    console.error('Error generating image:', error.message);
+    console.error('Error stack:', error.stack);
   }
 });
 
@@ -82,8 +111,18 @@ router.post('/generate-video', async (req, res) => {
           responseType: 'arraybuffer'
       });
 
-      res.setHeader('Content-Type', 'image/gif');
-      res.send(response.data);
+      let filename = generateRandomName(10) + '.gif'; // Generate a unique filename
+      const videoPath = path.join(__dirname, 'assets', filename);
+      
+      // Ensure assets directory exists
+      if (!fs.existsSync(path.join(__dirname, 'assets'))) {
+        fs.mkdirSync(path.join(__dirname, 'assets'));
+      }
+
+      fs.writeFileSync(videoPath, response.data); // Save the video file
+
+      // Send the video file as response
+      res.sendFile(videoPath);
   } catch (error) {
       console.error(error);
       res.status(500).json({ error: error.message });

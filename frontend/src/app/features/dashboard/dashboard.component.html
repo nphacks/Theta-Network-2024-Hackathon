@@ -3,16 +3,16 @@
 <div class="page">
     <div class="group-timelines" *ngIf="dashboardTimelineData.length > 0">
         <div class="dashboard-timeline-containers">
-            <div class="dashboard-timeline" *ngFor = "let timeline of dashboardTimelineData" [routerLink]="['/timeline', timeline._id]">
+            <div class="dashboard-timeline" *ngFor = "let timeline of dashboardTimelineData" [routerLink]="['/timeline', timeline.id]">
                 <div class="timeline-title">{{timeline.timelineName}}</div>
                 <div class="timeline-description">{{timeline.description}}</div>
                 <!-- <div class="timeline-author">{{timeline.author}}</div> -->
-                 <div *ngIf="timeline.mainTimeline != null && timeline.mainTimeline.length > 0">
+                 <!-- <div *ngIf="timeline.mainTimeline != null && timeline.mainTimeline.length > 0">
                     <div class="dashboard-timeline-episodes" *ngFor = "let episode of timeline.mainTimeline">
                         <div class="episode-title">{{episode.episodeTitle}}</div>
                         <div class="episode-title">{{episode.episodeDescription}}</div>
                     </div>
-                 </div>
+                 </div> -->
             </div>
         </div>
     </div>

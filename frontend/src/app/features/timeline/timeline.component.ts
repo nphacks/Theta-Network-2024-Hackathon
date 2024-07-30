@@ -2,7 +2,8 @@ import { Component } from '@angular/core';
 import { trigger, state, style, transition, animate, keyframes } from '@angular/animations';
 import { TimelineService } from '../../services/timeline.service';
 import { ActivatedRoute } from '@angular/router';
-import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
 @Component({
   selector: 'app-timeline',
@@ -152,9 +153,9 @@ export class TimelineComponent {
       eventTitle: ['', Validators.required],
       eventDescription: ['', Validators.required],
       imagePrompt: [''],
-      images: [],
+      images: [''],
       videoPrompt: [''],
-      videos: []
+      videos: ['']
     });
     this.events.push(eventGroup);
   }
@@ -163,21 +164,60 @@ export class TimelineComponent {
     this.events.removeAt(index);
   }
 
-  currentGenerateImage = ''
+  currentGenerateImagePrompt = ''
+  currentGenerateImageUrl = ''
   generateImage(index: number) {
-    console.log(this.currentGenerateImage)
-    this.timelineService.generateImage({input: this.currentGenerateImage}).subscribe(res => {
-      console.log(res)
+    console.log(this.currentGenerateImagePrompt)
+    this.timelineService.generateImage({input: this.currentGenerateImagePrompt}).subscribe((response: Blob) => {
+      console.log(response)
+      
+        const reader = new FileReader();
+        reader.onloadend = () => {
+          const img = document.createElement('img');
+          img.src = reader.result as string;
+          img.alt = 'Generated Image';
+          img.style.height = '200px';
+
+          // Clear previous image
+          const imageContainer = document.getElementById('imageContainer'+index);
+          if (imageContainer) {
+            imageContainer.innerHTML = '';
+            imageContainer.appendChild(img);
+          }
+        };
+        reader.readAsDataURL(response);
+      // this.currentGenerateImageUrl = (res as any).imageUrl;
+      // // Get the current images array from the form control
+      // const currentImages = (this.events.at(index).get('images') as FormControl).value || [];
+      
+      // // Update the form control with the new image array
+      // (this.events.at(index) as FormGroup).patchValue({ images: [...currentImages,  this.currentGenerateImageUrl] });
+      // console.log('Hello =>', this.currentGenerateImageUrl, this.addEpisodeForm)
     });
-    this.currentGenerateImage = ''
   }
 
   currentGenerateVideo = ''
+  isVideoGenerating = false
   generateVideo(index: number) {
-    this.timelineService.generateImage({prompt: this.currentGenerateVideo}).subscribe(res => {
-      console.log(res)
+    this.isVideoGenerating = true
+    this.timelineService.generateVideo({prompt: this.currentGenerateVideo}).subscribe((response: Blob) => {
+      this.isVideoGenerating = false
+      const reader = new FileReader();
+        reader.onloadend = () => {
+          const video = document.createElement('img');
+          video.src = reader.result as string;
+          video.alt = 'Generated video';
+          video.style.height = '200px';
+
+          // Clear previous image
+          const imageContainer = document.getElementById('videoContainer'+index);
+          if (imageContainer) {
+            imageContainer.innerHTML = '';
+            imageContainer.appendChild(video);
+          }
+        };
+        reader.readAsDataURL(response);
     });
-    this.currentGenerateVideo = ''
   }
 
   addEpisodeSubmit() {

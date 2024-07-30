@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import { MatInputModule } from '@angular/material/input';
 import { MatOptionModule } from '@angular/material/core';
-
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
 import { FeaturesRoutingModule } from './features-routing.module';
 import { DashboardComponent } from './dashboard/dashboard.component';
@@ -43,7 +43,8 @@ import { LandingPageComponent } from './landing-page/landing-page.component';
     FormsModule,
     MatAutocompleteModule,
     MatInputModule,
-    MatOptionModule
+    MatOptionModule,
+    MatProgressSpinnerModule
   ]
 })
 export class FeaturesModule { }

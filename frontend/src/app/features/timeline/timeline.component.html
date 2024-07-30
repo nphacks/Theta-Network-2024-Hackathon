@@ -24,55 +24,56 @@
                     <div>
                         <label for="episodeTimeline">Add Episode to Timeline</label>
                         <select id="episodeTimeline" formControlName="episodeTimeline">
-                            <option *ngFor="let timeline of timelineAvailable" [value]="timeline">{{timeline}}</option>
+                            <option *ngFor="let timeline of timelineAvailable" [value]="timeline" placeholder="Select Timeline">{{timeline}}</option>
                         </select>
                     </div>
                 
                     <div>
                         <label for="episodeTitle">Episode Title</label>
-                        <input id="episodeTitle" formControlName="episodeTitle" />
+                        <input id="episodeTitle" formControlName="episodeTitle"  placeholder="Enter Timeline Title"/>
                     </div>
                     
                     <div>
                         <label for="episodeDescription">Episode Description</label>
-                        <textarea id="episodeDescription" formControlName="episodeDescription" rows="2"></textarea>
+                        <textarea id="episodeDescription" formControlName="episodeDescription" rows="2" placeholder="Enter Timeline Description"></textarea>
                     </div>
                     
                     <div formArrayName="events" class="addEpisodeForm-events">
                         <div *ngFor="let event of events.controls; let i = index" [formGroupName]="i">
                             <div class="add-episode-form-event-title">
-                            <h3>Event {{ i + 1 }}</h3>
-                            <button class="app-button form-button" type="button" (click)="removeEvent(i)">Remove Event</button>
+                                <h3>Event {{ i + 1 }}</h3>
+                                <button class="app-button form-button" type="button" (click)="removeEvent(i)">Remove Event</button>
                             </div>
                             <div class="addEpisodeForm-event-title-input">
-                            <label for="eventTitle">Event Title</label>
-                            <input id="eventTitle" formControlName="eventTitle" />
+                                <label for="eventTitle">Event Title</label>
+                                <input id="eventTitle" formControlName="eventTitle" placeholder="Enter Episode Title"/>
                             </div>
                     
                             <div class="addEpisodeForm-event-description-input">
                             <label for="eventDescription">Event Description</label>
-                            <textarea id="eventDescription" formControlName="eventDescription" rows="4"></textarea>
+                            <textarea id="eventDescription" formControlName="eventDescription" rows="4" placeholder="Enter Episode Description"></textarea>
                             </div>
                     
                             <div class="addEpisodeForm-event-image-input">
                                 <label for="imagePrompt">Images</label>
-                                <input formControlName="imagePrompt" id="imagePrompt{{i}}" [(ngModel)]="currentGenerateImage"/>           
-                                <button class="app-button generate-button" type="button" (click)="generateImage(i)">Generate Image</button>
-                                <!-- <div>
-                                    <p>Select generated images:</p>
-                                    <input type="checkbox" [id]="'generatedImage' + i">
+                                <input type="text" formControlName="imagePrompt" id="imagePrompt{{i}}" [(ngModel)]="currentGenerateImagePrompt"/>           
+                                <button class="app-button generate-button" type="button" (click)="generateImage(i)"  placeholder="Write prompt to generate image">Generate Image</button>
+                                <div>
+                                    <p>Generated image:</p>
+                                    <div [attr.id]="'imageContainer' + i"></div>
                                         
-                                </div> -->
+                                </div>
                             </div>
                         
                             <div class="addEpisodeForm-event-video-input">
                                 <label for="videoPrompt">Video Prompt</label>
-                                <input formControlName="videoPrompt" id="videoPrompt{{i}}" [(ngModel)]="currentGenerateVideo"/>
-                                <button class="app-button generate-button" type="button" (click)="generateVideo(i)">Generate Video</button>
-                                <!-- <div>
-                                    <p>Generated videos:</p>
-                                    <input type="checkbox" [id]="'generatedVideo' + i">
-                                </div> -->
+                                <input type="text" formControlName="videoPrompt" id="videoPrompt{{i}}" [(ngModel)]="currentGenerateVideo"/>
+                                <button class="app-button generate-button" type="button" (click)="generateVideo(i)"  placeholder="Write prompt to generate video. Ex. sunset, orange sky, warm lighting, fishing boats, ocean waves seagulls">Generate Video</button>
+                                <div>
+                                    <p>Generated video:</p>
+                                    <mat-progress-spinner *ngIf="isVideoGenerating"></mat-progress-spinner>
+                                    <div [attr.id]="'videoContainer' + i"></div>  
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -90,7 +91,6 @@
         </div>
     </div>
     <!-- <ng-container *ngIf="allTimelines.length > 0"> -->
-
     <div class="timeline-container">
         <button class="scroll-buttons" (click)="scrollLeftMainTimeline()"> 
             <span class="material-symbols-outlined">arrow_back</span>

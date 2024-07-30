@@ -1,5 +1,4 @@
 const express = require('express');
-const auth = require('../middleware/auth');
 const Timeline = require('../models/Timeline');
 const router = express.Router();
 
@@ -35,7 +34,7 @@ router.get('/public', async (req, res) => {
 });
 
 // Get All Timeline of a particular user
-router.get('/creatorId/:creatorId', auth, async (req, res) => {
+router.get('/creatorId/:creatorId', async (req, res) => {
   try {
     const { creatorId } = req.params;
     const data = await Timeline.find({ creatorId: creatorId })
@@ -48,7 +47,7 @@ router.get('/creatorId/:creatorId', auth, async (req, res) => {
 });
 
 // Get All Timeline of a particular user in group
-router.get('/groups/:creatorId', auth, async (req, res) => {
+router.get('/groups/:creatorId', async (req, res) => {
   try {
     const { creatorId } = req.params;
     console.log('Hello => ', creatorId)

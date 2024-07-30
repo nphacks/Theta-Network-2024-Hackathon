@@ -75,10 +75,11 @@ export class TimelineService {
   }
 
   generateImage(body: any) {
-    return this.http.post(`${SERVER_URL}/theta/generate-image`, body)
+    return this.http.post(`${SERVER_URL}/theta/generate-image`, body, { responseType: 'blob' })
   }
 
   generateVideo(body: any) {
-    return this.http.post(`${SERVER_URL}/theta/generate-video`, body)
+    console.log('Generate video')
+    return this.http.post(`${SERVER_URL}/theta/generate-video`, body, { responseType: 'blob' })
   }
 }
