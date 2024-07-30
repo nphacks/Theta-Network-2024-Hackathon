@@ -1,0 +1,33 @@
+.app-header {
+    height: 70px;
+    /* padding: 15px; */
+    /* margin-left: 100px; */
+    width: 100vw; 
+    /* display: flex;
+    flex-direction: row;
+    justify-content: space-between; */
+    border-bottom: 0.5px solid #dfdfdf;
+    display: grid;
+    grid-template-columns: 100px auto 150px;
+    align-items: center;
+    background-color: #37127314;
+    /* -webkit-box-shadow: 10px 0px 20px 1px rgba(55,18,115,0.25);
+    -moz-box-shadow: 10px 0px 20px 1px rgba(55,18,115,0.25);
+    box-shadow: 10px 0px 20px 1px rgba(55,18,115,0.25); */
+}
+
+.heading {
+    font-size: 30px;
+    padding-left: 55px;
+}
+
+.user-button {
+    font-size: 20px;
+    border: 0;
+    color: #7922FC;
+    background-color: transparent;
+}
+
+.user-button:hover {
+    cursor: pointer;
+}

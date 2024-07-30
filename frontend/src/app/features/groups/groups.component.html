@@ -1,0 +1,16 @@
+<app-header></app-header>
+<app-side-navbar></app-side-navbar>
+<div class="page">
+    <div class="group-timelines" *ngIf="groupTimelineData.length > 0">
+        <div class="timeline-containers">
+            <div class="timeline" @fadeIn *ngFor = "let timeline of groupTimelineData" [routerLink]="['/timeline', timeline._id]">
+                <div class="timeline-title">{{timeline.timelineName}}</div>
+                <div class="timeline-description">{{timeline.description}}</div>
+                <!-- <div class="timeline-author">{{timeline.author}}</div> -->
+            </div>
+        </div>
+    </div>
+    <div class="group-timelines" *ngIf="groupTimelineData.length == 0">
+        <div class="timeline-created-div">No Group Timeline Created</div>
+    </div>
+</div>

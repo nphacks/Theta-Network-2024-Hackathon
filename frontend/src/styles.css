@@ -1,0 +1,174 @@
+/* You can add global styles to this file, and also import other style files */
+* {
+    font-family: "Quicksand", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+    margin: 0;
+    padding: 0;
+}
+
+.page {
+    height: 100vh;
+    margin-left: 100px;
+    width: calc(100vw - 100px);
+    overflow-y: auto;
+    background-color: #37127314;
+}
+
+.app-button {
+    height: 50px;
+    width: 250px;
+    margin: 20px 10px;
+    border: 0;
+    border-radius: 5px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #484848;
+    background-color: #ffffff;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.timeline-containers {
+    padding-bottom: 350px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    overflow-x: auto;
+}
+
+.timeline, .add-timeline {
+    height: 300px;
+    width: 300px;
+    margin: 25px;
+    border-radius: 10px;
+    background-color: #fff;
+    position: relative;
+    transition: transform 0.2s ease;
+}
+
+.timeline-title {
+    margin: 10px;
+    font-size: 35px;
+    color: #7922FC;
+}
+
+.timeline-intent {
+    margin: 10px;
+    font-style: italic;
+    color: #000;
+}
+
+.timeline-description {
+    margin: 10px;
+    color: #000;
+}
+
+.timeline-author {
+    margin: 10px;
+    color: #000;
+    position: absolute;
+    left: 0;
+    bottom: 10px;
+}
+
+
+form {
+    padding: 20px;
+    border-radius: 5px;
+    background-color: #fff;
+}
+
+form div {
+    margin: 10px 0;
+}
+
+form input, form textarea, form select {
+    width: 100%;
+    padding: 10px 15px;
+    margin: 10px 0;
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    /* font-family: Arial, sans-serif; */
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+form input[type=radio] {
+    width: 30px;
+}
+
+form input:focus, form textarea:focus {
+    border-color: #d3b6ff;
+    box-shadow: 0 0 8px #d3b5ffa7;
+    outline: none;
+}
+
+form input::placeholder, form textarea::placeholder {
+    color: #aaa;
+    opacity: 1; /* Override Firefox's default opacity */
+}
+
+.form-submit-discard-buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.form-button {
+    width: 120px;
+    margin: 0;
+    display: inline-block;
+    padding: 5px;
+    color: #000;
+    background-color: #f5f5f5;
+    border: none;
+    border-radius: 5px;
+    box-shadow: 0 5px #ececec;
+}
+
+.submit-button {
+    margin-left: 0;
+    width: 100px;
+    color: #fff;
+    background-color: #7922FC;
+}
+
+.discard-button {
+    width: 100px;
+    border: 2px solid #7922FC;
+}
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+/* Side form drawer */
+.drawer-container {
+    position: fixed;
+    top: 0;
+    right: 0;
+    height: 100%;
+    width: 60%;
+    background-color: white;
+    box-shadow: -2px 0 5px rgba(0,0,0,0.5);
+    transform: translateX(100%);
+    overflow-x: hidden;
+    transition: transform 0.3s ease-out;
+  }
+  
+.drawer-container .close-btn {
+    font-size: 25px;
+    display: inline-block;
+    margin: 20px;
+    color: #7922FC;
+    border: 0;
+    background-color: transparent;
+}
+
+button:hover {
+    cursor: pointer;
+}

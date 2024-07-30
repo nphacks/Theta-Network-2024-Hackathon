@@ -1,0 +1,35 @@
+<app-header></app-header>
+<app-side-navbar></app-side-navbar>
+<div class="page">
+    <div class="add-form-and-buttons">
+        <div class="add-buttons">
+            <button class="app-button" (click)="toggleDrawer()">
+                <span class="material-symbols-outlined">add</span>
+                Create New Timeline
+            </button>
+        </div>
+        <div  class="drawer-container" [@drawerAnimation]="drawerState">
+            <button class="close-btn" (click)="toggleDrawer()">Close</button>
+            <app-create-timeline-form></app-create-timeline-form>
+        </div>
+    </div>
+    <div class="my-space-timeline-containers" *ngIf="myTimelineData.length > 0">
+        <div class="my-space-timeline-headlines">
+            <div class="my-space-timeline-title">Timeline Name</div>
+            <div class="my-space-timeline-description">Description</div>
+            <div class="my-space-timeline-visibility">Visbility</div>
+        </div>
+    </div>
+    <div class="my-space-timelines" *ngIf="myTimelineData.length > 0">
+        <div class="my-space-timeline-containers">
+            <div class="my-space-timeline" *ngFor = "let timeline of myTimelineData" [routerLink]="['/timeline', timeline._id]">
+                <div class="my-space-timeline-title">{{timeline.timelineName}}</div>
+                <div class="my-space-timeline-description">{{timeline.description}}</div>
+                <div class="my-space-timeline-visibility">{{timeline.visbility | titlecase}}</div>
+            </div>
+        </div>
+    </div>
+    <div class="no-space-timelines" *ngIf="myTimelineData.length == 0">
+        <div class="timeline-created-div">No Timeline To Show</div>
+    </div>
+</div>

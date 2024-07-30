@@ -1,0 +1,19 @@
+<div class="side-navbar">
+    <div class="logo-image"><img src="../../../assets/logo.png" height="30px"></div>
+    <button class="navigation-buttons" [routerLink]="['/dashboard']"  [ngClass]="{ active: isActive('/dashboard') }">
+        <span class="material-symbols-outlined">space_dashboard</span>
+        <span>Dashboard</span>
+    </button>
+    <!-- <button class="navigation-buttons" [routerLink]="['/my-space']"  [ngClass]="{ active: isActive('/my-space') }">
+        <span class="material-symbols-outlined">workspaces</span>
+        <span>My Space</span>
+    </button> -->
+    <button class="navigation-buttons" [routerLink]="['/groups']"  [ngClass]="{ active: isActive('/groups') }">
+        <span class="material-symbols-outlined">groups</span>
+        <span>Groups</span>
+    </button>
+    <!-- <button class="navigation-buttons" [routerLink]="['/groups']"  [ngClass]="{ active: isActive('/home') }">
+        <span class="material-symbols-outlined">settings</span>
+        <span>Settings</span>
+    </button> -->
+</div>

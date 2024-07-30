@@ -1,0 +1,50 @@
+<form [formGroup]="createTimelineForm" (ngSubmit)="onSubmit()" class="createTimelineForm">
+    <div>
+        <label for="timelineName">Timeline Name</label>
+        <input id="timelineName" formControlName="timelineName" />
+    </div>
+  
+    <div>
+        <label for="description">Timeline Description</label>
+        <textarea id="description" formControlName="description" rows="2"></textarea>
+    </div>
+
+    <div>
+        <label for="visibility">Timeline View Access</label><br>
+        <input type="radio" id="visibility" formControlName="visibility" value="private" />
+        <label for="private">Private</label>
+        <input type="radio" id="visibility" formControlName="visibility" value="group" />
+        <label for="group">Group</label>
+        <input type="radio" id="visibility" formControlName="visibility" value="public" />
+        <label for="public">Public</label>
+    </div>
+
+    <!-- <div>
+        <label for="editAccess">Timeline Edit Access</label><br>
+        <input type="radio" id="editAccess" formControlName="editAccess" value="private" />
+        <label for="private">Private</label>
+        <input type="radio" id="editAccess" formControlName="editAccess" value="group" />
+        <label for="group">Group</label>
+        <input type="radio" id="editAccess" formControlName="editAccess" value="public" />
+        <label for="public">Public</label>
+    </div> -->
+
+    <div *ngIf="createTimelineForm.get('editAccess')?.value === 'group' || createTimelineForm.get('visbility')?.value === 'group'">
+        <label for="groupUsers">Select Group Members</label>
+        <select id="groupUsers" formControlName="groupUsers" multiple>
+          <option *ngFor="let user of allUsers" [value]="user">
+            {{ user.userTitle }}
+          </option>
+        </select>
+      </div>
+      
+
+
+    <div class="form-submit-discard-buttons">
+        <button class="app-button submit-button" type="submit">Submit</button>
+        <button class="app-button discard-button" (click)="createTimelineForm.reset()">
+            <span class="material-symbols-outlined">delete_forever</span>
+            Discard
+        </button>
+    </div>
+</form>

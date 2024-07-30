@@ -1,0 +1,159 @@
+<app-header></app-header>
+<app-side-navbar></app-side-navbar>
+<div class="page">
+    <div class="add-form-and-buttons">
+        <div class="add-buttons">
+            <button class="app-button add-episode-button" (click)="toggleDrawer()">
+                <span class="material-symbols-outlined add-symbol">add</span>
+                Add Episode
+            </button>
+            <button class="app-button" (click)="createNewParallelTimeline()">
+                <span class="material-symbols-outlined">add</span>
+                Create New Parallel Timeline
+            </button>
+              
+        </div>
+        
+        <div class="drawer-container" [@drawerAnimation]="drawerState">
+            <!-- <div *ngIf="formSelected === 'Add Episode'"> -->
+                <button class="close-btn" (click)="toggleDrawer()">
+                    <span class="material-symbols-outlined">close</span>
+                    Close
+                </button>
+                <form [formGroup]="addEpisodeForm" (ngSubmit)="addEpisodeSubmit()" class="addEpisodeForm">
+                    <div>
+                        <label for="episodeTimeline">Add Episode to Timeline</label>
+                        <select id="episodeTimeline" formControlName="episodeTimeline">
+                            <option *ngFor="let timeline of timelineAvailable" [value]="timeline">{{timeline}}</option>
+                        </select>
+                    </div>
+                
+                    <div>
+                        <label for="episodeTitle">Episode Title</label>
+                        <input id="episodeTitle" formControlName="episodeTitle" />
+                    </div>
+                    
+                    <div>
+                        <label for="episodeDescription">Episode Description</label>
+                        <textarea id="episodeDescription" formControlName="episodeDescription" rows="2"></textarea>
+                    </div>
+                    
+                    <div formArrayName="events" class="addEpisodeForm-events">
+                        <div *ngFor="let event of events.controls; let i = index" [formGroupName]="i">
+                            <div class="add-episode-form-event-title">
+                            <h3>Event {{ i + 1 }}</h3>
+                            <button class="app-button form-button" type="button" (click)="removeEvent(i)">Remove Event</button>
+                            </div>
+                            <div class="addEpisodeForm-event-title-input">
+                            <label for="eventTitle">Event Title</label>
+                            <input id="eventTitle" formControlName="eventTitle" />
+                            </div>
+                    
+                            <div class="addEpisodeForm-event-description-input">
+                            <label for="eventDescription">Event Description</label>
+                            <textarea id="eventDescription" formControlName="eventDescription" rows="4"></textarea>
+                            </div>
+                    
+                            <div class="addEpisodeForm-event-image-input">
+                                <label for="imagePrompt">Images</label>
+                                <input formControlName="imagePrompt" id="imagePrompt{{i}}" [(ngModel)]="currentGenerateImage"/>           
+                                <button class="app-button generate-button" type="button" (click)="generateImage(i)">Generate Image</button>
+                                <!-- <div>
+                                    <p>Select generated images:</p>
+                                    <input type="checkbox" [id]="'generatedImage' + i">
+                                        
+                                </div> -->
+                            </div>
+                        
+                            <div class="addEpisodeForm-event-video-input">
+                                <label for="videoPrompt">Video Prompt</label>
+                                <input formControlName="videoPrompt" id="videoPrompt{{i}}" [(ngModel)]="currentGenerateVideo"/>
+                                <button class="app-button generate-button" type="button" (click)="generateVideo(i)">Generate Video</button>
+                                <!-- <div>
+                                    <p>Generated videos:</p>
+                                    <input type="checkbox" [id]="'generatedVideo' + i">
+                                </div> -->
+                            </div>
+                        </div>
+                    </div>
+                    <button class="app-button form-button" style="margin-top: 5px;" type="button" (click)="addEvent()">Add Event</button>
+                    <br>
+                    <div class="form-submit-discard-buttons">
+                        <button class="app-button submit-button" type="submit">Submit</button>
+                        <button class="app-button discard-button" (click)="addEpisodeForm.reset()">
+                            <span class="material-symbols-outlined">delete_forever</span>
+                            Discard
+                        </button>
+                    </div>
+                </form>
+            <!-- </div> -->
+        </div>
+    </div>
+    <!-- <ng-container *ngIf="allTimelines.length > 0"> -->
+
+    <div class="timeline-container">
+        <button class="scroll-buttons" (click)="scrollLeftMainTimeline()"> 
+            <span class="material-symbols-outlined">arrow_back</span>
+        </button>
+        <div class="timeline-row" id="main-timeline">
+            <div class="episodes-timeline" *ngFor="let episode of mainTimeline; let j = index" @slideInFromTop [style.animationDelay]="j * 0.1 + 's'" >
+                <div class="episode-title">
+                    {{episode.episodeTitle}}
+                    <!-- <span (click)="editEpisode(i, j, episode)" class="material-symbols-outlined edit">edit</span> -->
+                </div>
+                <div class="episode-description">{{episode.episodeDescription}}</div>
+                <div class="event-container" *ngFor="let event of episode.events">
+                    <div class="event-title">{{event.eventTitle}}</div>
+                    <div class="event-content">
+                        <div class="event-description">{{event.eventDescription}}</div>
+                        <div class="event-media">
+                            <ng-container *ngIf="event.eventImages.length > 0">
+                                <img *ngFor="let imgSrc of event.eventImages" src="{{imgSrc}}" height="100px" width="100px"/>
+                            </ng-container>       
+                            <ng-container *ngIf="event.eventVideos.length > 0">
+                                <video *ngFor="let videoSrc of event.eventVideos" src="{{videoSrc}}" height="100px" width="100px" controls></video>
+                            </ng-container>  
+                        </div>
+                    </div>       
+                </div>
+            </div>
+        </div>
+        <button class="scroll-buttons" (click)="scrollRightMainTimeline()">
+            <span class="material-symbols-outlined">arrow_forward</span>
+        </button>
+    </div>
+    <div class="timeline-container" *ngFor="let timeline of allParallelTimelines; let i = index">
+        <button class="scroll-buttons" (click)="scrollLeft(i)"> 
+            <span class="material-symbols-outlined">arrow_back</span>
+        </button>
+        <div class="timeline-row" [id]="'timeline' + i">
+            <div class="episodes-timeline"  *ngFor="let episode of timeline; let j = index" [ngClass]="{'episode-updated': episode.updated, 'episode-not-updated': !episode.updated}">
+                <div class="episode-title">
+                    {{episode.episodeTitle}}
+                    <span (click)="editEpisode(i, j, episode)" class="material-symbols-outlined edit">edit</span>
+                </div>
+                <div class="episode-description">{{episode.episodeDescription}}</div>
+                <div class="event-container" *ngFor="let event of episode.events">
+                    <div class="event-title">{{event.eventTitle}}</div>
+                    <div class="event-content">
+                        <div class="event-description">{{event.eventDescription}}</div>
+                        <div class="event-media">
+                            <ng-container *ngIf="event.eventImages.length > 0">
+                                <img *ngFor="let imgSrc of event.eventImages" src="{{imgSrc}}" height="100px" width="100px"/>
+                            </ng-container>       
+                            <ng-container *ngIf="event.eventVideos.length > 0">
+                                <video *ngFor="let videoSrc of event.eventVideos" src="{{videoSrc}}" height="100px" width="100px" controls></video>
+                            </ng-container>  
+                        </div>
+                    </div>       
+                </div>
+            </div>
+        </div>
+        <button class="scroll-buttons" (click)="scrollRight(i)">
+            <span class="material-symbols-outlined">arrow_forward</span>
+        </button>
+    </div>
+    <!-- </ng-container> -->
+   
+    
+</div>

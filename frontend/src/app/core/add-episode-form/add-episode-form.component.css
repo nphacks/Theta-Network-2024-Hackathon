@@ -1,0 +1,86 @@
+.addEpisodeForm {
+    padding: 20px;
+    border-radius: 5px;
+    background-color: #fff;
+}
+
+.addEpisodeForm input, .addEpisodeForm textarea, .addEpisodeForm select {
+    width: 100%;
+    padding: 10px 15px;
+    margin: 10px 0;
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    /* font-family: Arial, sans-serif; */
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.addEpisodeForm input:focus, .addEpisodeForm textarea:focus {
+    border-color: #d3b6ff;
+    box-shadow: 0 0 8px #d3b5ffa7;
+    outline: none;
+}
+
+.addEpisodeForm input::placeholder, .addEpisodeForm textarea::placeholder {
+    color: #aaa;
+    opacity: 1; /* Override Firefox's default opacity */
+}
+
+.add-episode-form-event-title {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 10px;
+}
+
+.form-submit-discard-buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.form-button {
+    width: 120px;
+    margin: 0;
+    display: inline-block;
+    padding: 5px;
+    color: #000;
+    background-color: #f5f5f5;
+    border: none;
+    border-radius: 5px;
+    box-shadow: 0 5px #ececec;
+}
+
+.submit-button {
+    margin-left: 0;
+    width: 100px;
+    color: #fff;
+    background-color: #7922FC;
+}
+
+.discard-button {
+    width: 100px;
+    border: 2px solid #7922FC;
+}
+
+.addEpisodeForm h3 {
+    color: #7922FC;
+    font-weight: 500;
+}
+
+.addEpisodeForm-events {
+    background-color: #f5f5f5;
+}
+
+.addEpisodeForm-event-title-input,
+.addEpisodeForm-event-description-input, 
+.addEpisodeForm-event-image-input,
+.addEpisodeForm-event-video-input {
+    padding: 10px;
+}
+
+.image-search, .video-search {
+    width: 80%;
+}

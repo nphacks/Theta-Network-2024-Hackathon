@@ -1,0 +1,56 @@
+<app-header></app-header>
+<app-side-navbar></app-side-navbar>
+<div class="page">
+    <div class="tabs">
+        <button (click)="selectedTab = 'registerForm'" [class.active]="selectedTab === 'registerForm'">Register</button>
+        <button (click)="selectedTab = 'loginForm'" [class.active]="selectedTab === 'loginForm'">Login</button>
+    </div>
+
+    <form  *ngIf="selectedTab === 'registerForm'" #registerForm="ngForm" (ngSubmit)="onSubmitRegister(registerForm)" class="registerForm">
+        <div>
+          <label for="firstName">First Name</label>
+          <input id="firstName" name="firstname" [(ngModel)]="user.firstname" required />
+        </div>
+      
+        <div>
+          <label for="lastName">Last Name</label>
+          <input id="lastName" name="lastname" [(ngModel)]="user.lastname" required />
+        </div>
+      
+        <div>
+          <label for="username">Username</label>
+          <input id="username" name="username" [(ngModel)]="user.username" required />
+        </div>
+      
+        <div>
+          <label for="email">Email</label>
+          <input id="email" name="email" [(ngModel)]="user.email" type="email" required />
+        </div>
+      
+        <div>
+          <label for="password">Password</label>
+          <input id="password" name="password" [(ngModel)]="user.password" type="password" required />
+        </div>
+      
+        <div>
+          <label for="reenterPassword">Re-enter Password</label>
+          <input id="reenterPassword" name="reenterPassword" [(ngModel)]="user.reenterPassword" type="password" required />
+        </div>
+      
+        <button class="app-button submit-button" type="submit" [disabled]="!registerForm.valid">Register</button>
+      </form>
+
+      <form *ngIf="selectedTab === 'loginForm'" #loginForm="ngForm" (ngSubmit)="onSubmitLogin(loginForm)" class="loginForm">
+        <div>
+          <label for="username">Username</label>
+          <input id="username" name="username" [(ngModel)]="login.username" required />
+        </div>
+
+        <div>
+          <label for="password">Password</label>
+          <input id="password" name="password" [(ngModel)]="login.password" type="password" required />
+        </div>
+      
+        <button class="app-button submit-button" type="submit" [disabled]="!loginForm.valid">Login</button>
+      </form>
+</div>

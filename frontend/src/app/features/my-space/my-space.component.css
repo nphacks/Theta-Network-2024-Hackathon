@@ -1,0 +1,71 @@
+.no-space-timelines {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    height: 100vh;
+}
+
+.timeline-created-div {
+    font-weight: 800;
+    margin-top: 250px;
+    font-size: 25px;
+    letter-spacing: 5px;
+    color: #7922fc74;
+}
+
+.add-form-and-buttons {
+    border-bottom: 0.5px solid #dfdfdf;
+}
+
+.add-buttons {
+    padding: 0 25px;
+    display: flex;
+    flex-direction: row;
+    justify-content: right;
+    align-items: right;
+}
+
+.parallel-timeline-button:hover, .add-episode-button:hover {
+    cursor: pointer;
+}
+
+.add-episode {
+    border-bottom: 0;
+}
+
+.add-episode-button {
+    color: #7922FC;
+}
+
+.my-space-timeline-containers {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.my-space-timeline, .my-space-timeline-headlines {
+    margin: 10px 0;
+    border-radius: 5px;
+    height: 100px;
+    width: 90%;
+    vertical-align: middle;
+    display: grid;
+    grid-template-columns: 25% 55% 10%;
+    background-color: #fff;
+}
+
+.my-space-timeline-headlines {
+    height: 50px;
+    font-weight: 500;
+    background-color: #dfdfdf;
+}
+
+.my-space-timeline-title, 
+.my-space-timeline-description,
+.my-space-timeline-visibility {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

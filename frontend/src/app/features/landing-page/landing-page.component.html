@@ -1,0 +1,45 @@
+<header>
+    <img src="../../../assets/logo.png" height="40px" />
+    <button class="app-button submit-button" [routerLink]="['/authentication']">
+        Login
+    </button>
+</header>
+<div class="landing-page">
+    <div class="page1">
+        <div>
+            <h1 @fadeIn @slideIn>Write your own story</h1>
+            <p @fadeIn @slideIn>A collaborative platform for crafting and animating unique stories</p>
+            <button @fadeIn @slideIn class="app-button submit-button" [routerLink]="['/dashboard']">
+                Dashboard
+            </button>
+        </div>
+        <div>
+            <img @fadeIn @slideInImage src="../../../assets/landing-page-1.png" height="300px">
+        </div>
+    </div>
+  
+    <div class="features">
+      <div class="feature" @flyInOutLeft>
+        <img @fadeIn src="../../../assets/your_story.png" height="300px">
+        <div>
+          <h2>Create your story</h2>
+          <p>Start your journey by creating your own story, filled with your imagination and creativity.</p>
+        </div>
+      </div>
+      <div class="feature" @flyInOutRight>
+        <div>
+          <h2>Collaborate with friends or strangers</h2>
+          <p>Work together with friends or strangers to build an epic tale, sharing ideas and creativity.</p>
+        </div>
+        <img @fadeIn src="../../../assets/collaborate.png" height="300px">
+      </div>
+      <div class="feature" @flyInOutLeft>
+        <img @fadeIn src="../../../assets/animate.png" height="300px">
+        <div>
+          <h2>Animate scenes</h2>
+          <p>Bring your story to life by animating scenes and making your characters move and interact.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  

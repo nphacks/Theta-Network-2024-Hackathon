@@ -1,0 +1,13 @@
+<header class="app-header">
+    <!-- <div class="logo-image"><img src="../../../assets/logo.png" height="30px"></div> -->
+    <div class="buffer"></div>
+    <div class="heading">
+        <!-- {{heading}} -->
+    </div>
+    <div class="functions">
+        <button class="user-button" *ngIf="isAuthenticated === false" [routerLink]="['/authentication']">Login</button>
+        <button class="user-button" *ngIf="isAuthenticated === true" [routerLink]="['/my-space']">My Space</button>
+        <button class="user-button" *ngIf="isAuthenticated === true" [routerLink]="['/dashboard']">Logout</button>
+    </div>
+</header>
+<router-outlet></router-outlet>

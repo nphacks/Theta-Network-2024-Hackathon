@@ -1,0 +1,59 @@
+.group-timelines {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    height: 100vh;
+}
+
+.timeline-created-div {
+    font-weight: 800;
+    margin-top: 250px;
+    font-size: 25px;
+    letter-spacing: 5px;
+    color: #7922fc74;
+}
+
+.timeline-containers {
+    width: 100%;
+    padding-bottom: 350px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    overflow-x: auto;
+}
+
+.timeline, .add-timeline {
+    height: 300px;
+    width: 300px;
+    margin: 25px;
+    border-radius: 10px;
+    background-color: #fff;
+    position: relative;
+    transition: transform 0.2s ease;
+}
+
+.timeline-title {
+    margin: 10px;
+    font-size: 35px;
+    color: #7922FC;
+}
+
+.timeline-intent {
+    margin: 10px;
+    font-style: italic;
+    color: #000;
+}
+
+.timeline-description {
+    margin: 10px;
+    color: #000;
+}
+
+.timeline-author {
+    margin: 10px;
+    color: #000;
+    position: absolute;
+    left: 0;
+    bottom: 10px;
+}

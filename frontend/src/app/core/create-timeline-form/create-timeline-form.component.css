@@ -1,0 +1,63 @@
+.createTimelineForm {
+    padding: 20px;
+    border-radius: 5px;
+    background-color: #fff;
+}
+
+.createTimelineForm input, .createTimelineForm textarea, .createTimelineForm select {
+    width: 100%;
+    padding: 10px 15px;
+    margin: 10px 0;
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    /* font-family: Arial, sans-serif; */
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.createTimelineForm input[type=radio] {
+    width: 30px;
+}
+
+.createTimelineForm input:focus, .createTimelineForm textarea:focus {
+    border-color: #d3b6ff;
+    box-shadow: 0 0 8px #d3b5ffa7;
+    outline: none;
+}
+
+.createTimelineForm input::placeholder, .createTimelineForm textarea::placeholder {
+    color: #aaa;
+    opacity: 1; /* Override Firefox's default opacity */
+}
+
+.form-submit-discard-buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.form-button {
+    width: 120px;
+    margin: 0;
+    display: inline-block;
+    padding: 5px;
+    color: #000;
+    background-color: #f5f5f5;
+    border: none;
+    border-radius: 5px;
+    box-shadow: 0 5px #ececec;
+}
+
+.submit-button {
+    margin-left: 0;
+    width: 100px;
+    color: #fff;
+    background-color: #7922FC;
+}
+
+.discard-button {
+    width: 100px;
+    border: 2px solid #7922FC;
+}

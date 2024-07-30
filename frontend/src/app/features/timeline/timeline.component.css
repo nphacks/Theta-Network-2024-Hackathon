@@ -1,0 +1,168 @@
+.episode-timeline-form {
+    padding: 20px 250px;
+}
+
+.timeline-container {
+    margin-bottom: 25px;
+    display: grid;
+    grid-template-columns: 2% auto 2%;
+    width: calc(100vw - 100px);
+}
+
+.timeline-row {
+    white-space: nowrap;
+    overflow-x: auto;
+    overflow-y: hidden;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    /* background-color: red; */
+}
+
+.timeline-row::-webkit-scrollbar {
+    display: none; 
+}
+
+.scroll-buttons { 
+    height: 150px;
+    width: 50px;
+    padding: 10px;
+    border: 0;
+    border-radius: 5px;
+    font-weight: 600;
+    color: #fff;
+    z-index: 5;
+    position: relative;
+    top: 40%;
+    background-color: #7922fc5d;
+}
+
+.scroll-buttons span {
+    transform: scale(2);
+}
+
+.scroll-buttons:last-of-type {
+    border-top-left-radius: 80px 80px;
+    border-bottom-left-radius: 80px 80px;
+    transform: translateX(-25px);
+}
+
+.scroll-buttons:first-of-type {
+    border-top-right-radius: 80px 80px;
+    border-bottom-right-radius: 80px 80px;
+}
+
+.scroll-buttons span {
+    font-size: 15px;
+    display: inline-block;
+    line-height: 15px;
+}
+
+.episodes-timeline {
+    flex: 0 0 auto;
+    height: 600px;
+    width: 500px;
+    margin: 25px;
+    padding: 20px;
+    border-radius: 5px;
+    display: inline-block;
+    position: relative;
+    overflow-y: auto;
+    background-color: #fff;
+}
+
+.episodes-timeline::-webkit-scrollbar {
+    display: none;
+}
+
+.episode-title {
+    font-size: 30px;
+    color: #000000;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.edit {
+    color: #7922FC;
+}
+
+.episode-description {
+    padding: 15px 0;
+    font-size: 17px;
+}
+
+.event-container {
+    border-radius: 2px;
+    margin: 30px 0;
+    padding: 10px;
+    background-color: #f3f3f3;
+}
+
+.event-title {
+    font-size: 20px;
+    font-weight: 500;
+    margin-bottom: 5px;
+    color: #300077;
+}
+
+.event-content {
+    display: grid;
+    grid-template-columns: 60% auto;
+}
+
+.event-description {
+    text-wrap: wrap;
+}
+
+.event-media {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.event-media img, .event-media video {
+    margin: 10px;
+}
+
+.add-form-and-buttons {
+    border-bottom: 0.5px solid #dfdfdf;
+}
+
+.add-buttons {
+    padding: 0 25px;
+    display: flex;
+    flex-direction: row;
+    justify-content: right;
+    align-items: right;
+}
+
+.parallel-timeline-button:hover, .add-episode-button:hover {
+    cursor: pointer;
+}
+
+.addEpisodeForm .generate-button {
+    border: 1px dashed #7922FC;
+}
+
+.add-episode {
+    border-bottom: 0;
+}
+
+.add-episode-button {
+    color: #7922FC;
+}
+
+.drawer-container {
+    z-index: 50;
+}
+  
+.episode-updated {
+    border: 2px solid #7922FC;
+    background-color: #fff;
+}
+
+.episode-not-updated {
+    border: 1px dashed #7922FC;
+    background-color: #ffffffb6;
+}
